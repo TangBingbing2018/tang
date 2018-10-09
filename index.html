@@ -1,1 +1,44 @@
 欢迎
+create database jxgl;
+use jxgl;
+create table students(
+s_no char(4) not null comment'学号',
+s_name char(4) not null comment'姓名',
+sex enum('男','女') not null default'男' comment'性别',
+birthday date not null comment'出生日期',
+d_no char(6) not null comment'系别',
+address varchar(20) not null comment'家庭地址',
+phone varchar(12) not null comment'联系电话',
+photo blob comment'照片',
+primary key(s_no));
+
+create table course(
+c_no char(4) not null comment'课程号',
+c_name char(10) not null comment'课程名',
+hours tinyint(3) not null comment'学时',
+credit tinyint(3) not null comment'学分',
+type enum('选修','必修') not null default'必修' comment'类型',
+primary key(c_no));
+
+create table score(
+s_no char(8) not null comment'学号',
+c_no char(4) not null comment'课程号',
+report float(2) null comment'成绩',
+primary key(s_no, c_no));
+
+create table departments(
+d_no char(8) not null comment'系别',
+d_name char(4) not null comment'院系名称',
+primary key(d_no));
+
+create table teachers(
+t_no char(8) not null comment'教师编号',
+t_name char(4) not null comment'教师姓名',
+d_no char(4) null comment'系别',
+primary key(t_no,t_name));
+
+create table teach(
+t_no char(8) not null comment'教师编号',
+c_no char(4) null comment'课程号',
+key(t_no),
+key(c_no));
